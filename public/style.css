@@ -383,6 +383,111 @@ header h1 {
     font-size: 18px;
 }
 
+#authPages {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.auth-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-container {
+    background: white;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 400px;
+    animation: slideDown 0.3s ease;
+}
+
+.auth-container h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.auth-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 1.5em;
+}
+
+.auth-container form {
+    margin-bottom: 20px;
+}
+
+.auth-container p {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+}
+
+.auth-container a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.auth-container a:hover {
+    text-decoration: underline;
+}
+
+.header-right {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.user-info {
+    color: #666;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.profile-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.profile-item label {
+    font-weight: 600;
+    color: #333;
+}
+
+.profile-item span {
+    color: #666;
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 20px;
@@ -398,6 +503,16 @@ header h1 {
         font-size: 1.5em;
     }
 
+    .header-right {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .header-right .btn {
+        width: 100%;
+    }
+
     .gallery {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 15px;
@@ -406,5 +521,11 @@ header h1 {
     .modal-content {
         width: 95%;
         padding: 20px;
+    }
+
+    .auth-container {
+        padding: 30px 20px;
+        max-width: 100%;
+        margin: 20px;
     }
 }

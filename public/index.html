@@ -7,11 +7,94 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="authPages" style="display: none;">
+        <div id="loginPage" class="auth-page">
+            <div class="auth-container">
+                <h1>🖼️ ImgBad</h1>
+                <h2>登录</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginUsername">用户名</label>
+                        <input type="text" id="loginUsername" placeholder="输入用户名" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">密码</label>
+                        <input type="password" id="loginPassword" placeholder="输入密码" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">登录</button>
+                </form>
+                <p>没有账号？<a href="#" onclick="switchToRegister(event)">注册新账号</a></p>
+            </div>
+        </div>
+
+        <div id="registerPage" class="auth-page" style="display: none;">
+            <div class="auth-container">
+                <h1>🖼️ ImgBad</h1>
+                <h2>注册</h2>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerUsername">用户名</label>
+                        <input type="text" id="registerUsername" placeholder="输入用户名" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">邮箱</label>
+                        <input type="email" id="registerEmail" placeholder="输入邮箱地址" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">密码</label>
+                        <input type="password" id="registerPassword" placeholder="至少6个字符" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerConfirmPassword">确认密码</label>
+                        <input type="password" id="registerConfirmPassword" placeholder="再次输入密码" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">注册</button>
+                </form>
+                <p>已有账号？<a href="#" onclick="switchToLogin(event)">返回登录</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="mainApp" style="display: none;">
     <div class="container">
         <header>
             <h1>🖼️ ImgBad 图床管理系统</h1>
-            <button id="configBtn" class="btn btn-secondary">⚙️ S3 配置</button>
+            <div class="header-right">
+                <span id="userInfo" class="user-info"></span>
+                <button id="configBtn" class="btn btn-secondary">⚙️ S3 配置</button>
+                <button id="profileBtn" class="btn btn-secondary">👤 账号</button>
+                <button id="logoutBtn" class="btn btn-secondary">登出</button>
+            </div>
         </header>
+
+        <div id="profileModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeProfileModal()">&times;</span>
+                <h2>👤 账号信息</h2>
+                <div id="profileContent" class="profile-content">
+                    <div class="profile-item">
+                        <label>用户名:</label>
+                        <span id="profileUsername"></span>
+                    </div>
+                    <div class="profile-item">
+                        <label>邮箱:</label>
+                        <span id="profileEmail"></span>
+                    </div>
+                    <div class="profile-item">
+                        <label>注册时间:</label>
+                        <span id="profileCreatedAt"></span>
+                    </div>
+                    <div class="profile-item">
+                        <label>图片数量:</label>
+                        <span id="profileImageCount"></span>
+                    </div>
+                    <div class="profile-item">
+                        <label>总大小:</label>
+                        <span id="profileTotalSize"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div id="configModal" class="modal">
             <div class="modal-content">
@@ -78,6 +161,7 @@
                 <div class="loading">加载中...</div>
             </div>
         </div>
+    </div>
     </div>
 
     <div id="notification" class="notification"></div>
