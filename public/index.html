@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImgBad - 图床管理系统</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🖼️ ImgBad 图床管理系统</h1>
+            <button id="configBtn" class="btn btn-secondary">⚙️ S3 配置</button>
+        </header>
+
+        <div id="configModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>S3 存储配置</h2>
+                <form id="configForm">
+                    <div class="form-group">
+                        <label for="endpoint">Endpoint (端点)*</label>
+                        <input type="text" id="endpoint" placeholder="https://s3.amazonaws.com" required>
+                        <small>例如: https://s3.amazonaws.com 或 https://your-domain.com</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="region">Region (区域)*</label>
+                        <input type="text" id="region" placeholder="us-east-1" required>
+                        <small>例如: us-east-1, ap-southeast-1</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="bucket">Bucket (存储桶)*</label>
+                        <input type="text" id="bucket" placeholder="my-bucket" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="accessKeyId">Access Key ID*</label>
+                        <input type="text" id="accessKeyId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="secretAccessKey">Secret Access Key*</label>
+                        <input type="password" id="secretAccessKey" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="publicUrlPrefix">Public URL Prefix (公开访问前缀)</label>
+                        <input type="text" id="publicUrlPrefix" placeholder="https://cdn.example.com">
+                        <small>可选：如果使用CDN，填写CDN域名</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary">💾 保存配置</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="upload-section">
+            <h2>📤 上传图片</h2>
+            <div class="upload-area" id="uploadArea">
+                <input type="file" id="fileInput" accept="image/*" multiple style="display: none;">
+                <div class="upload-content">
+                    <div class="upload-icon">📁</div>
+                    <p>点击或拖拽图片到此处上传</p>
+                    <small>支持 JPG, PNG, GIF, WEBP, BMP 格式，自动无损压缩</small>
+                </div>
+            </div>
+            <div id="uploadProgress" class="upload-progress" style="display: none;">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p id="progressText">上传中...</p>
+            </div>
+        </div>
+
+        <div class="gallery-section">
+            <div class="gallery-header">
+                <h2>🖼️ 图片库</h2>
+                <button id="refreshBtn" class="btn btn-secondary">🔄 刷新</button>
+            </div>
+            <div id="imageCount" class="image-count"></div>
+            <div id="gallery" class="gallery">
+                <div class="loading">加载中...</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
