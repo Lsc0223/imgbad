@@ -1,4 +1,4 @@
-const { S3Client, ListObjectsV2Command, PutObjectCommand, GetObjectCommand } = require('@aws-sdk/client-s3');
+const { S3Client, ListObjectsV2Command, PutObjectCommand, GetObjectCommand, DeleteObjectCommand } = require('@aws-sdk/client-s3');
 const db = require('./database');
 
 class S3Service {
@@ -148,6 +148,25 @@ class S3Service {
       '.svg': 'image/svg+xml'
     };
     return contentTypes[ext] || 'application/octet-stream';
+  }
+
+  async deleteImage(key) {
+    if (!this.isConfigured()) {
+      throw new Error('S3 not configured');
+    }
+
+    try {
+      const command = new DeleteObjectCommand({
+        Bucket: this.config.bucket,
+        Key: key
+      });
+
+      await this.client.send(command);
+      return true;
+    } catch (error) {
+      console.error('Error deleting image:', error);
+      throw error;
+    }
   }
 }
 
