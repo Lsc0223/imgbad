@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  imgbad:
+    build: .
+    container_name: imgbad
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data:/app/data
+      - ./uploads:/app/uploads
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: unless-stopped
